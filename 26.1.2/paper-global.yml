@@ -102,7 +102,7 @@ proxies:
   velocity:
     enabled: true
     online-mode: false
-    secret: ""
+    secret: ${CFG_PAPER_GLOBAL_PROXY_SECRET}
 scoreboards:
   save-empty-scoreboard-teams: true
   track-plugin-scoreboards: false

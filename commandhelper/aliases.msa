@@ -21,7 +21,7 @@
           if(has_permission(@player, 'gsn.mg.flight.nick.coolblue')) {
             @cmd = '/nickname player'
             @gradientstart = '<gradient:#6691FF:#00C8FF>'
-            @gradientend = '</gradient>''
+            @gradientend = '</gradient>'
             runas('~console', "@cmd @player @gradientstart @player @gradientend");
           }
           else { msg('You must unlock this colour first!'); }

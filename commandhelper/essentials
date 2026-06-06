@@ -1,0 +1,5 @@
+## Because I didn't want to install essentials
+/gmc = run('/gamemode creative');
+/gms = run('/gamemode survival');
+/gmsp = run('/gamemode spectator');
+/gma = run('/gamemode adventure');

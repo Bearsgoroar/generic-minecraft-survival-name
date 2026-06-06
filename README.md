@@ -1,2 +1,4 @@
-h gfhfgh
-ghjhghg
+
+![Title](../../Desktop/GSN-ATitle.png)
+
+Code for the generic.minecraft.survival.name server!

@@ -12,7 +12,7 @@ services:
 
  ############################################# LIMBO ###
 
-  mc-limbo:
+  mc-roomwithamoose:
     image: itzg/minecraft-server:latest
     container_name: limbo
     tty: true

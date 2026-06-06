@@ -19,7 +19,10 @@
         ## Flightmaster colours
         case 'coolblue':
           if(has_permission(@player, 'gsn.mg.flight.nick.coolblue')) {
-            runas('~console', "/nickname player @player <gradient:#6691FF:#00C8FF>@player</gradient>");
+            @cmd = '/nickname player'
+            @gradientstart = '<gradient:#6691FF:#00C8FF>'
+            @gradientend = '</gradient>''
+            runas('~console', "@cmd @player @gradientstart @player @gradientend");
           }
           else { msg('You must unlock this colour first!'); }
         case 'skyblue':

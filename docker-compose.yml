@@ -12,7 +12,7 @@ services:
 
  ############################################# LIMBO ###
 
-  mc-roomwithamoose:
+  mc-limbo:
     image: itzg/minecraft-server:latest
     container_name: limbo
     tty: true
@@ -37,7 +37,7 @@ services:
       MEMORY: "512M"
       MAX_PLAYERS: "64"
     volumes:
-      - "./limbo:/data"
+      - "./servers/limbo:/data"
       - "./plugins/limbo:/plugins-local:ro"
     secrets:
       - rcon_pass
@@ -73,7 +73,7 @@ services:
     volumes:
       - "./servers/main:/data"
       - "./plugins/common:/plugins-common:ro"
-      - "./plugins/lobby:/plugins-local:ro"
+      - "./plugins/main:/plugins-local:ro"
       - "./schematics:/data/plugins/WorldEdit/schematics:z"
       - "./config/commandhelper:/data/plugins/CommandHelper:z"
     secrets:

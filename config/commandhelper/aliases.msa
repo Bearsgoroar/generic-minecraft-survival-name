@@ -1,0 +1,272 @@
+# Lines that start with # or // are comments
+# Lines surrounded by /* */ are block comments
+
+*:/fart = >>>
+  @player = player();
+  @ph = set_placeholders(@player, '%player_displayname%');
+  msg("I did a @ph");
+<<<
+
+*:/gsn [$opt1] [$opt2] = >>>
+  @player = player();
+
+  switch($opt1) {
+    case 'nick':
+      switch_ic($opt2) {
+        ## Reset
+        case 'reset':
+          runas('~console', "/nickname player @player reset");
+        ## Flightmaster colours
+        case 'coolblue':
+          if(has_permission(@player, 'gsn.mg.flight.nick.coolblue')) {
+            runas('~console', "/nickname player @player <gradient:#6691FF:#00C8FF>@player</gradient>");
+          }
+          else { msg('You must unlock this colour first!'); }
+        case 'skyblue':
+          if(has_permission(@player, 'gsn.mg.flight.nick.skyblue')) {
+            runas('~console', "/nickname player @player <gradient:#53FBF1:#27B7A6>@player</gradient>");
+          }
+          else { msg('You must unlock this colour first!'); }
+        case 'sunrise':
+          if(has_permission(@player, 'gsn.mg.flight.nick.sunrise')) {
+            runas('~console', "/nickname player @player <gradient:#FFE259:#FF4040>@player</gradient>");
+          }
+          else { msg('You must unlock this colour first!'); }
+        case 'sunset':
+          if(has_permission(@player, 'gsn.mg.flight.nick.sunset')) {
+            runas('~console', "/nickname player @player <gradient:#3914CC:#A64DFF>@player</gradient>");
+          }
+          else { msg('You must unlock this colour first!'); }
+        case 'shadowblue':
+          if(has_permission(@player, 'gsn.mg.flight.nick.shadowblue')) {
+            runas('~console', "/nickname player @player <shadow:aqua:0.5>@player</shadow>");
+          }
+          else { msg('You must unlock this colour first!'); }
+
+        ## Parkour Colours
+        case 'rainbow':
+          if(has_permission(@player, 'gsn.mg.flight.nick.rainbow')) {
+            runas('~console', "/nickname player @player <rainbow>@player</rainbow>");
+          }
+          else { msg('You must unlock this colour first!'); }
+        default:
+          msg('Options are: Reset, CoolBlue, SkyBlue, Sunrise, Sunset, ShadowBlue, Rainbow')
+      }
+    case 'pet':
+      run('/pet gui');
+    case 'glow':
+      switch_ic($opt2) {
+        case 'reset':
+          @teams = get_pteam(@player);
+          if(@teams) {
+            #broadcast(@teams);
+            team_remove_player(@teams['name'], @player);
+            #set_peffect(@player, 'GLOWING', 10, 0);
+            set_entity_glowing(pinfo(@player, '20'), false);
+          }
+        case 'aqua':
+          if(has_permission(@player, 'gsn.mg.flight.glow.aqua')) {
+            team_add_player('glow_aqua', @player);
+            #set_peffect(@player, 'GLOWING', 1, -1, false, false);
+            set_entity_glowing(pinfo(@player, '20'), true);
+          }
+          else {
+            msg('You must unlock this effect first!'); }
+        default:
+          msg('Options are: reset, aqua'); }
+    case 'head':
+      msg('Not implemented yet sorry');
+    default:
+      msg('Options are: nick, pet, glow, head');
+  }
+<<<
+
+*:/streamer [$opt1] [$opt2] = >>>
+  @player = player()
+  switch_ic($opt1) {
+    case 'on':
+      runas('~console', "/lp user @player parent addtemp temp_streamer 5h");
+      broadcast("@player has just went live https://twitch.tv/bearsgoroar_au");
+    case 'off':
+      runas('~console', "/lp user @player parent removetemp temp_streamer");
+    case 'link':
+      msg("Set: $opt2 as streamer link");
+    default:
+      msg('Options are: on, off, link');
+  }
+<<<
+
+*:/testing [$player] = >>>
+  @player = $player;
+  if(@player == null || @player == '') { @player = player() };
+
+delete_virtual_inventory(@player);
+
+@menu = array(
+  0: array(
+    item: 'PLAYER_HEAD',
+    title: 'Flight Master: Rank 1',
+    texture: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDEyMTQ4MWU4YjE1MTZiYTkyNGJkMWRmNTExZGEyYWRiNzU0MTJhZDJkNGU2MGNkZmU4ZTIyOWU1Y2YzMmUzMiJ9fX0=',
+    owneruuid: '76298620-cb46-47b7-8cfa-dbc282244822'
+  ),
+  9: array(
+    item: 'POTION',
+    title: 'Flight Master: Rank 1',
+    potiontype: 'NIGHT_VISION',
+    permission: 'gsn.mg.flight.rank.1',
+    lore: array('Nickname', 'carrot', color('aqua').'bananana')
+  ),
+  10: array(
+    item: 'POTION',
+    title: 'Flight Master: Rank 2',
+    potiontype: 'LEAPING',
+    permission: 'gsn.mg.flight.rank.2',
+    lore: array('Nickname', 'carrot', color('aqua').'bananana')
+  ),
+  11: array(
+    item: 'POTION',
+    title: 'Flight Master: Rank 3',
+    potiontype: 'SLOW_FALLING',
+    permission: 'gsn.mg.flight.rank.3',
+    lore: array('Nickname', 'carrot', color('aqua').'bananana'),
+    action: closure() {
+      msg('As you wish.');
+      explosion(ploc());
+    }
+  ),
+  12: array(
+    item: 'POTION',
+    title: 'Flight Master: Rank 4',
+    potiontype: 'STRENGTH',
+    permission: 'gsn.mg.flight.rank.4',
+    lore: array('Nickname', 'carrot', color('aqua').'bananana'),
+    action: closure() {
+      msg('As you wish.');
+      explosion(ploc());
+    }
+  ),
+  13: array(
+    item: 'POTION',
+    title: 'Flight Master: Rank 5',
+    potiontype: 'FIRE_RESISTANCE',
+    permission: 'gsn.mg.flight.rank.5',
+    lore: array('Nickname', 'carrot', color('aqua').'bananana'),
+    action: closure() {
+      msg('As you wish.');
+      explosion(ploc());
+    }
+  )
+);
+
+  @items = array();
+
+  @keyList = array_keys(@menu)
+  #broadcast(@keyList);
+  for(@slot = 0, @slot < 54, @slot++){
+    if(array_contains(@keyList, @slot)) {
+      @entry = @menu[@slot]
+      #broadcast(@menu[@slot]);
+      switch(@entry['item']) {
+        case 'POTION':
+          if(has_permission(@player, @entry['permission'])) {
+             @items[@slot] = array(name: @entry['item'], meta: array(display: @entry['title'], potiontype: @entry['potiontype'], lore:@entry['lore']));
+          }
+          else {
+            @items[@slot] = array(name: 'LINGERING_POTION', meta: array(display: "LOCKED!", potiontype: 'INFESTED'));
+          }
+
+        #@items[@slot] = array(name: @entry['item'], meta: array(display: @entry['title'], potiontype: @entry['potiontype']));
+        case 'PLAYER_HEAD':
+          @items[@slot] = array(name: @entry['item'], meta: array(display: @entry['title'], texture: @entry['texture'], owneruuid: @entry['owneruuid']));
+      }
+    }
+
+    else {
+      @items[@slot] = array(name: 'GRAY_STAINED_GLASS_PANE', meta: array(display: ' '));
+    }
+    #broadcast(@slot)
+  }
+
+  #broadcast(@items);
+  create_virtual_inventory(@player, 54, 'Testing', @items);
+  popen_inventory(player(), @player);
+<<<
+
+*:/fchat $ = >>>
+    set_timeout(50, closure(){
+
+        @player = player();
+
+        @compiled = byte_array();
+        @payload = byte_array();
+
+        @chat = $;
+        @preface = '&8[&7SMP&8] &7[&f@&7] '
+        @afterface = '&8: &7'
+        @world = 'lclo';
+        @tag = 'tag';
+
+        @message = @preface.@tag.@player.@afterface.@chat;
+
+        #Debug
+        broadcast(@message);
+
+        ba_put_string(@payload, @message);
+
+        ba_put_string(@compiled, 'Forward');
+        ba_put_string(@compiled, 'ALL');
+        ba_put_string(@compiled, 'Chat');
+        ba_put_string(@compiled, array_size(@payload));
+
+        ba_put_bytes(@compiled, @payload);
+
+        if(is_channel_registered('BungeeCord')) {
+            send_plugin_message(@player, 'BungeeCord', @compiled);
+            unregister_channel('BungeeCord');
+        } else {
+            register_channel('BungeeCord');
+            send_plugin_message(@player, 'BungeeCord', @compiled);
+            unregister_channel('BungeeCord');
+        }
+    })
+<<<
+
+# Kills the player, optionally with a message.
+# Demonstrates how to use the multi-line alias construct.
+thor:/thor $player [$] = >>>
+        lightning(ploc($player));
+        msg('Thou hast smitten the evil player '.$player.' with thy mighty hand');
+        tmsg($player, color('red').if($, $, 'You have been smitten by Thor\'s Hammer!'));
+        pkill($player);
+<<<
+
+/*
+        Shows help information
+        This demonstrates how to use die() and msg(). They work basically the same, except die() kills the command if
+        evaluated. They both send a message to the player. This also shows multi-line if/else using braces.
+*/
+/help [$cmd] = >>>
+        if(!$cmd) {
+                die('Do you need halp?');
+        }
+        if($cmd == 'commandhelper') {
+                msg('The best plugin ever!');
+        } else {
+            msg('I don\'t know what that is.');
+        }
+<<<
+
+# List all players on the server
+# Demonstrates the foreach function, as well as ivars and concatenation assignment.
+/list = >>>
+        # Initialize an empty string
+        @playerList = '';
+        @playerArray = all_players();
+        # Loop through the array stored in @playerArray
+        foreach(@player in @playerArray) {
+                # Append our player's name to the end of @playerList string
+                @playerList .= @player . ' ';
+        }
+        # Output the string
+        msg(@playerList);
+<<<

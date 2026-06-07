@@ -2,10 +2,10 @@
 # Lines surrounded by /* */ are block comments
 
 ## Because I didn't want to install essentials
-/gmc = run('/gamemode creative');
-/gms = run('/gamemode survival');
-/gmsp = run('/gamemode spectator');
-/gma = run('/gamemode adventure');
+gsn.mod:/gmc = runas('~console', '/gamemode creative');
+gsn.mod:/gms = runas('~console', '/gamemode survival');
+gsn.mod:/gmsp = runas('~console', '/gamemode spectator');
+gsn.mod:/gma = runas('~console', '/gamemode adventure');
 
 ~console:/rankup $player $rank = _rankUp($player, $rank);
 

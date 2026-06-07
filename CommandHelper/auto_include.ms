@@ -17,8 +17,8 @@ proc _checkStaff(@rank = 'mod', @msg = 'You do not have permission to run this c
 }
 
 proc _rankUp(@player, @rank) {
-  broadcast(colorize("[GSNBot] @player has leveled up to @rank!"));
+  broadcast(colorize("[GSNBot]&e @player has leveled up to @rank!"));
   @cmd = "/lpv user"
   @other = 'parent set'
-  run(@cmd @player @other @rank);
+  run('/lpv user Bearsgoroar parent set player');
 }

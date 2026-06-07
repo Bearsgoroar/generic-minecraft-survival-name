@@ -76,7 +76,6 @@ services:
       - "./plugins/common:/plugins-common:ro"
       - "./plugins/main:/plugins-local:ro"
       - "./schematics:/data/plugins/WorldEdit/schematics:z"
-      - "./commandhelper:/data/plugins/CommandHelper:z"
     secrets:
       - rcon_pass
       - forwarding_secrets

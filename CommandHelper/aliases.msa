@@ -1,6 +1,12 @@
 # Lines that start with # or // are comments
 # Lines surrounded by /* */ are block comments
 
+## Because I didn't want to install essentials
+/gmc = run('/gamemode creative');
+/gms = run('/gamemode survival');
+/gmsp = run('/gamemode spectator');
+/gma = run('/gamemode adventure');
+
 *:/fart = >>>
   @player = player();
   @ph = set_placeholders(@player, '%player_displayname%');

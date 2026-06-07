@@ -7,6 +7,8 @@
 /gmsp = run('/gamemode spectator');
 /gma = run('/gamemode adventure');
 
+~console:/rankup $player $rank = _rankUp($player, $rank);
+
 *:/fart = >>>
   @player = player();
   @ph = set_placeholders(@player, '%player_displayname%');

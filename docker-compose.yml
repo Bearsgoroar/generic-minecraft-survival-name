@@ -60,7 +60,7 @@ services:
       MEMORY: "8G"
       LEVEL: "main"
       SERVER: "main"
-      WORLD_NAME: "main"
+      WORLD_NAME: "build"
       DIFFICULTY: "2"
       LEVEL_TYPE: "large_biomes"
       SEED: "-1172713370011937745"

@@ -57,7 +57,7 @@ services:
     env_file:
       - ./config/global_env.env
     environment:
-      MEMORY: "6G"
+      MEMORY: "8G"
       LEVEL: "main"
       SERVER: "main"
       WORLD_NAME: "main"

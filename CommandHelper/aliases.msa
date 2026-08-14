@@ -23,6 +23,14 @@
   runas('~console', "/gamemode adventure @player");
 <<<
 
+*:/buildteam = >>>
+  @player = player();
+  runas('~console', "/mv tp @player build");
+  runas('~console', "/gamemode creative @player");
+  runas('~console', "/lp user @player parent add buildteam");
+  broadcast("Welcome to the build team @player");
+<<<
+
 ~console:/rankup $player $rank = _rankUp($player, $rank);
 
 *:/fart = >>>

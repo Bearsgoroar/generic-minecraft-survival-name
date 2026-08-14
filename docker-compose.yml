@@ -53,6 +53,7 @@ services:
     stdin_open: true
     ports:
       - "30070:25565"
+      - "24454:24454/udp"
     env_file:
       - ./config/global_env.env
     environment:

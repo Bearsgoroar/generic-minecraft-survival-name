@@ -1,5 +1,5 @@
 advancements:
-  disable-saving: true
+  disable-saving: false
   disabled:
     - minecraft:story/disabled
 commands:

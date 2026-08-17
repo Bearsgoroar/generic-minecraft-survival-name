@@ -24,7 +24,7 @@ proc _rankUp(@player, @rank) {
 }
 
 proc _headAward(@player, @display, @message, @texture) {
-  @date = simple_date(dd/MMMM/yyyy);
+  @date = simple_date('dd/MMMM/yyyy');
   pgive_item(@player, array(
     name: 'PLAYER_HEAD', 
     meta: array(
@@ -34,12 +34,15 @@ proc _headAward(@player, @display, @message, @texture) {
         colorize("&#E7FDB7Awarded to @player"), 
         colorize("&#A92890@date")
       ),
-      enchants: array(
-        'minecraft:lure': 1
-      )
+      flag: array('HIDE_ENCHANTS'),
+      glint: true,
+      enchantability: 10,
+      #enchants: array(
+      #  'luck_of_the_sea': 1
+      #),
       owner: 'Bearsgoroar',
       texture: @texture
     )
-  );
+  )):
 }
 

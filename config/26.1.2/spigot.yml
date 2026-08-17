@@ -1,5 +1,5 @@
 advancements:
-  disable-saving: true
+  disable-saving: false
   disabled:
     - minecraft:story/disabled
 commands:
@@ -13,8 +13,10 @@ commands:
   silent-commandblock-console: false
   spam-exclusions:
     - /skill
+    - /setblock
+    - /fill
   tab-complete: 0
-  enable-spam-exclusions: false
+  enable-spam-exclusions: true
 config-version: 12
 messages:
   outdated-client: §cYour client is outdated! Please update to version {0}.

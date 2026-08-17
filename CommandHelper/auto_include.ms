@@ -22,3 +22,24 @@ proc _rankUp(@player, @rank) {
   @other = 'parent set'
   run('/lpv user Bearsgoroar parent set player');
 }
+
+proc _headAward(@player, @display, @message, @texture) {
+  @date = simple_date(dd/MMMM/yyyy);
+  pgive_item(@player, array(
+    name: 'PLAYER_HEAD', 
+    meta: array(
+      display: colorize("&l@display"), 
+      lore: array(
+        colorize("&#CFFF45@message"), 
+        colorize("&#E7FDB7Awarded to @player"), 
+        colorize("&#A92890@date")
+      ),
+      enchants: array(
+        'minecraft:lure': 1
+      )
+      owner: 'Bearsgoroar',
+      texture: @texture
+    )
+  );
+}
+

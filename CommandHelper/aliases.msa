@@ -4,8 +4,7 @@
 ## Because I didn't want to install essentials
 *:/gmc = >>>
   _checkStaff('mod');
-  @player = player();
-  runas('~console', "/gamemode creative @player");
+  runas('~console', /gamemode creative player());
 <<<
 *:/gms = >>>
   _checkStaff('mod');
@@ -22,14 +21,74 @@
   @player = player(); 
   runas('~console', "/gamemode adventure @player");
 <<<
+*:/gmop = >>>
+  _checkStaff('admin');
+  @player = player();
+  @status = pinfo(@player, 8);
+  if(@status == false) {
+    runas('~console', "/op @player");
+  } else { 
+    runas('~console', "/deop @player");
+  }
+<<<
 
-~console:/rankup $player $rank = _rankUp($player, $rank);
+*:/buildteam [$player]= >>>
+  if($player) {
+    @player = $player
+  }
+  else {
+    @player = player();
+  }
+  runas('~console', "/mv tp @player build");
+  runas('~console', "/gamemode creative @player");
+  runas('~console', "/lp user @player parent add buildteam");
+  minimessage("<gray>[</gray><dark_green>GSNBot</dark_green><gray>]</gray> <gradient:#A5FB37:#CFFF45>Welcome to the build team @player</gradient>");
+<<<
+
+*:/c $ = >>>
+  @player = player();
+  @msg = $;
+  runas('~console', "/say <@player> @msg");
+<<<
+
+*:/nv [$switch] = >>>
+  @player = player();
+  switch_ic($switch) {
+    case 'ON':
+      set_peffect(@player, 'NIGHT_VISION', 1, -1, 1, 0);
+      #runas('~console', "/effect give @player minecraft:night_vision infinite");
+      break();
+    default:
+      clear_peffects(@player)
+      runas('~console', "/effect clear @player minecraft:night_vision");
+  }
+<<<
+
+*:/award [$choice]= >>>
+  @player = player();
+  
+  @Year = simple_date(yyyy)
+  ## Player, Display Name, Message, Head Texture base64
+  switch_ic() {
+    case 'FOUNDER':
+      _headAward(player(), '&#DEFB2BFOUNDER', "&#B5FDB6You were there at the start!", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTMwZmU3NzFmY2MzZWNjMDUzMGVlOTU0NWFiMDc3OTc0MzdmOTVlMDlhMGVhYTliNTEyNDk3ZmU4OTJmNTJmYiJ9fX0=");
+    case 'SPAWNBUILDER':
+      _headAward(player(), '&#DEFB2BALPHA HUB BUILDER', "&#B5FDB6Helped build the first hub!", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2M1NDI5MGI3MmUxZWI1OWI4ZjdjNmVjZTY0NjgzYzA4YmFlY2RlMTU1ZjhmNDQ1MTc3OWIzZDIyYzRiZTFhNiJ9fX0=");
+    case 'PVP':
+      _headAward(player(), '&#C71640PVP GOD AUGUST', "&#D85E7BAchieved Rank #1", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTYwOWE5OTNkMzZhNTNkMjE1YWFkY2U1NmE3YzljNzE5MWYxNzE1YmQ1YmVkNjM0NzAzNzMxMzhiOGEzMDg5MyJ9fX0=");
+    case 'HALLOWEEN':
+      _headAward(player(), '&#DE7D47HALLOWEEN @Year', '&#E8A580Logged in during Halloween 2026!', "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzk1ZmEzZmRmN2E0MWM5YjY4ODNkYTU5YmE2MzM0NTFlMWNiMTJkYWU1M2U1NWFkZDg1YTE3MzU5ZGQ0NTg0NiJ9fX0=");
+    default:
+      msg(colorize("&aOptions are: FOUNDER, SPAWNBUILDER, PVP, HALLOWEEN"));
+  }
+<<<
 
 *:/fart = >>>
   @player = player();
   @ph = set_placeholders(@player, '%player_displayname%');
   msg("I did a @ph");
 <<<
+
 
 *:/gsn [$opt1] [$opt2] = >>>
   @player = player();
